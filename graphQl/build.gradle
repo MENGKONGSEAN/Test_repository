@@ -1,0 +1,40 @@
+plugins {
+	id 'org.springframework.boot' version '2.2.0.RELEASE'
+	id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+	id 'java'
+}
+
+ext {
+	graphQLJPAVersion = "0.3.34"
+}
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	implementation("org.postgresql:postgresql:42.2.8")
+	// https://mvnrepository.com/artifact/org.projectlombok/lombok
+	implementation group: 'org.projectlombok', name: 'lombok', version: '1.18.10'
+
+	// GraphQL JPA
+	implementation("com.introproventures:graphql-jpa-query-annotations:${graphQLJPAVersion}")
+	implementation("com.introproventures:graphql-jpa-query-dependencies:${graphQLJPAVersion}")
+	implementation("com.introproventures:graphql-jpa-query-schema:${graphQLJPAVersion}")
+	implementation("com.introproventures:graphql-jpa-query-boot-starter:${graphQLJPAVersion}")
+	implementation("com.introproventures:graphql-jpa-query-autoconfigure:${graphQLJPAVersion}")
+	implementation("com.introproventures:graphql-jpa-query-web:${graphQLJPAVersion}")
+	implementation("com.graphql-java:graphql-java-extended-scalars:1.0")
+}
+
+test {
+	useJUnitPlatform()
+}
